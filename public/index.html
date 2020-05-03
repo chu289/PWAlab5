@@ -22,22 +22,29 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather PWA</title>
+  <title>PWA Tutorial</title>
   <meta name="codelab" content="your-first-pwa-v3">
   <link rel="stylesheet" type="text/css" href="/styles/inline.css">
-  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/images/temperature.png" type="image/x-icon" />
 
   <!-- CODELAB: Add link rel manifest -->
+  <link rel="manifest" href="/manifest.json">
   <!-- CODELAB: Add iOS meta tags and icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Weather PWA">
+<link rel="apple-touch-icon" href="/images/icons/icon-152x152.png">
   <!-- CODELAB: Add description here -->
+  <meta name="description" content="A sample weather app">
   <!-- CODELAB: Add meta theme-color -->
+  <meta name="theme-color" content="#2F3BA2" />
 
 </head>
-<body>
+<body style="background-image: linear-gradient(120deg, #ffcccc,#ffb8b8);">
 
   <header class="header">
     <h1>
-      Weather PWA
+      Weather
       <a href="https://darksky.net/poweredby/" class="powered-by">
         Powered by Dark Sky
       </a>
@@ -78,21 +85,21 @@
         </div>
         <div class="description">
           <div class="humidity">
-            <span class="label">Humidity:</span>
+            <span class="label">濕度:</span>
             <span class="value"></span><span class="scale">%</span>
           </div>
           <div class="wind">
-            <span class="label">Wind:</span>
+            <span class="label">風速:</span>
             <span class="value"></span>
             <span class="scale">mph</span>
             <span class="direction"></span>°
           </div>
           <div class="sunrise">
-            <span class="label">Sunrise:</span>
+            <span class="label">日出:</span>
             <span class="value"></span>
           </div>
           <div class="sunset">
-              <span class="label">Sunset:</span>
+              <span class="label">日落:</span>
               <span class="value"></span>
             </div>
         </div>
@@ -202,8 +209,17 @@
   <script src="/scripts/luxon-1.11.4.js"></script>
   <script src="/scripts/app.js"></script>
   <!-- CODELAB: Add the install script here -->
+  <script src="/scripts/install.js"></script>
   <script>
     // CODELAB: Register service worker.
+    if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+        .then((reg) => {
+          console.log('Service worker registered.', reg);
+        });
+  });
+}
   </script>
 
 </body>
